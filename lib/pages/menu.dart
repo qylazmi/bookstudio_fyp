@@ -139,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ]),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             _buildMenuItem('BUY', Icons.shopping_basket),
-            _buildMenuItem('CART', Icons.shopping_cart),
+            _buildMenuItem('CART ', Icons.shopping_cart),
           ]),
         ],
       ),
