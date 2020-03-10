@@ -282,6 +282,10 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  void _removeUser() {
+    widget.auth.deleteUser();
+  }
+
   void _sendResetPasswordMail() {
     if (_resetPasswordEmail != null && _resetPasswordEmail.isNotEmpty) {
       print("============>" + _resetPasswordEmail);

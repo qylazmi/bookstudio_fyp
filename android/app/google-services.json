@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "728696665267",
+    "firebase_url": "https://bookstudiofyp-89897.firebaseio.com",
+    "project_id": "bookstudiofyp-89897",
+    "storage_bucket": "bookstudiofyp-89897.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:728696665267:android:1edab26044b4abee672cc6",
+        "android_client_info": {
+          "package_name": "com.example.bookstudiofyp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "728696665267-03rklbn8j4hhsdf3lr1rprv47efhgar1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgm4Usdsp2iXdZoUtpwvx0PSKKMyxP_K0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "728696665267-03rklbn8j4hhsdf3lr1rprv47efhgar1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

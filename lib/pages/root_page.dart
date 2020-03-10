@@ -1,6 +1,6 @@
+import 'package:bookstudiofyp/pages/menu_user.dart';
 import 'package:flutter/material.dart';
 import './login_signup_page.dart';
-import './menu_user.dart';
 import '../services/authentication.dart';
 import './home_page.dart';
 
@@ -80,13 +80,12 @@ class _RootPageState extends State<RootPage> {
         break;
       case AuthStatus.LOGGED_IN:
         if (_userId.length > 0 && _userId != null) {
-          return new HomePage(
+          return new MenuPage(
             userId: _userId,
             auth: widget.auth,
             onSignedOut: _onSignedOut,
           );
-//        Navigator.push(context, MaterialPageRoute(builder: (context)=> MenuPage()));
-
+//        Navigator.push(context, MaterialPageRoute(builder: (context)=>MenuPage()));
         } else return _buildWaitingScreen();
         break;
       default:

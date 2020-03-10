@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
 import './home_page.dart';
+import './buy.dart';
+import './cart.dart';
+import '../services/authentication.dart';
 
 class MenuPage extends StatefulWidget {
+  MenuPage({Key key, this.auth, this.userId, this.onSignedOut})
+      : super(key: key);
+
+  final BaseAuth auth;
+  final VoidCallback onSignedOut;
+  final String userId;
+
   @override
   _MenuPageState createState() => _MenuPageState();
+
 }
 
 class _MenuPageState extends State<MenuPage> {
-
-  var selectedItem = 'PROFILE';
+  var selectedItem = 'SELL';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       backgroundColor: Colors.black,
       body: ListView(
         children: <Widget>[
@@ -25,15 +34,15 @@ class _MenuPageState extends State<MenuPage> {
               ShaderMask(
                   shaderCallback: (rect) {
                     return LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [Colors.black, Colors.transparent])
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [Colors.black, Colors.transparent])
                         .createShader(
-                        Rect.fromLTRB(0, 0, rect.width, rect.height));
+                            Rect.fromLTRB(0, 0, rect.width, rect.height));
                   },
                   blendMode: BlendMode.dstIn,
                   child: Image.asset('img/.png',
-                      height: 345.0, fit: BoxFit.fitHeight )),
+                      height: 345.0, fit: BoxFit.fitHeight)),
               RotatedBox(
                 quarterTurns: 3,
                 child: Text('BOOKSTUDIO',
@@ -95,7 +104,6 @@ class _MenuPageState extends State<MenuPage> {
                       )
                     ],
                   )),
-
               Positioned(
                   top: 420.0,
                   left: 43.0,
@@ -124,13 +132,21 @@ class _MenuPageState extends State<MenuPage> {
           ),
           //Get out of the stack for the options
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            _buildMenuItem('SELL', Icons.store),
-            _buildMenuItem('PROFILE', Icons.account_circle),
-
+            InkWell(child: _buildMenuItem('SELL', Icons.store), onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
+            },),
+            InkWell(child: _buildMenuItem('PROFILE', Icons.account_circle), onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
+            },),
           ]),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            _buildMenuItem('BUY', Icons.shopping_basket),
-            _buildMenuItem('CART', Icons.shopping_cart),
+            InkWell(child: _buildMenuItem('BUY', Icons.shopping_basket), onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> BuyPage()));
+            },),
+            InkWell(child: _buildMenuItem('CART', Icons.shopping_cart), onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> CartPage()));
+            },),
+
           ]),
         ],
       ),
@@ -138,35 +154,26 @@ class _MenuPageState extends State<MenuPage> {
   }
 
   Widget _buildMenuItem(String itemName, iconData) {
-    return InkWell(
-        splashColor: Colors.transparent,
-        onTap: () {
-          selectMenuOption(itemName);
-          selectMenu(itemName);
-        },
-        child: AnimatedContainer(
-            curve: Curves.easeIn,
-            duration: Duration(milliseconds: 300),
-            height: selectedItem == itemName ? 100.0 : 75.0,
-            width: selectedItem == itemName ? 100.0 : 75.0,
-            color: selectedItem == itemName
-                ? Color(0xFF9CCC65)
-                : Colors.transparent,
-            child:
-            Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Icon(
-                iconData,
-                color: selectedItem == itemName ? Colors.white : Colors.white,
-                size: 25.0,
-              ),
-              SizedBox(height: 12.0),
-              Text(itemName,
-                  style: TextStyle(
-                      fontFamily: 'Montserrat',
-                      color:
-                      selectedItem == itemName ? Colors.white : Colors.white,
-                      fontSize: 12.0))
-            ])));
+    return AnimatedContainer(
+        curve: Curves.easeIn,
+        duration: Duration(milliseconds: 300),
+        height: selectedItem == itemName ? 100.0 : 75.0,
+        width: selectedItem == itemName ? 100.0 : 75.0,
+        color:
+            selectedItem == itemName ? Color(0xFF9CCC65) : Colors.transparent,
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Icon(
+            iconData,
+            color: selectedItem == itemName ? Colors.white : Colors.white,
+            size: 25.0,
+          ),
+          SizedBox(height: 12.0),
+          Text(itemName,
+              style: TextStyle(
+                  fontFamily: 'Montserrat',
+                  color: selectedItem == itemName ? Colors.white : Colors.white,
+                  fontSize: 12.0))
+        ]));
   }
 
   selectMenuOption(String itemName) {
@@ -174,11 +181,9 @@ class _MenuPageState extends State<MenuPage> {
       selectedItem = itemName;
     });
   }
+
   selectMenu(String itemName) {
-
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => HomePage(
-
-        )));
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => HomePage()));
   }
 }
