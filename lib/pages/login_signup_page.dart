@@ -135,7 +135,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
               ),
             ),
             _showBody(),
-            _showCircularProgress(),
+            //_showCircularProgress(),
           ],
         )
     );

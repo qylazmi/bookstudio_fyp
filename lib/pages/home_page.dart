@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import '../services/authentication.dart';
 import 'package:firebase_database/firebase_database.dart';
-import '../models/todo.dart';
 import 'dart:async';
 
-class ProfilePage extends StatefulWidget {
-  ProfilePage({Key key, this.auth, this.userId, this.onSignedOut})
+class HomePage extends StatefulWidget {
+  HomePage({Key key, this.auth, this.userId, this.onSignedOut})
       : super(key: key);
 
   final BaseAuth auth;
@@ -13,11 +12,10 @@ class ProfilePage extends StatefulWidget {
   final String userId;
 
   @override
-  State<StatefulWidget> createState() => new _ProfilePageState();
+  State<StatefulWidget> createState() => new _HomePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
-  List<Todo> _todoList;
+class _HomePageState extends State<HomePage> {
 
   final FirebaseDatabase _database = FirebaseDatabase.instance;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -35,7 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
   bool _isIos;
   bool _isLoading;
 
-  _ProfilePageState() {
+  _HomePageState() {
     _emailFilter.addListener(_emailListen);
     _passwordFilter.addListener(_passwordListen);
     _resetPasswordEmailFilter.addListener(_resetPasswordEmailListen);
@@ -77,9 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     super.initState();
-
     _checkEmailVerification();
-
   }
 
   void _checkEmailVerification() async {
@@ -152,6 +148,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
 
+
   _signOut() async {
     try {
       await widget.auth.signOut();
@@ -161,6 +158,7 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
+
   Widget _showButtonList() {
     return new Container(
       padding: EdgeInsets.all(26.0),
@@ -168,17 +166,13 @@ class _ProfilePageState extends State<ProfilePage> {
         children: <Widget>[
           _showChangeEmailContainer(),
           new SizedBox(
-            height: 40.0,
+            height: 10.0,
           ),
           _showChangePasswordContainer(),
           new SizedBox(
-            height: 40.0,
+            height: 10.0,
           ),
           _showSentResetPasswordEmailContainer(),
-          new SizedBox(
-            height: 40.0,
-          ),
-          _removeUserContainer(),
         ],
       ),
     );
@@ -188,11 +182,12 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('Flutter login demo'),
+        //title: new Text('UPDATE PROFILE'),
+        backgroundColor: Color(0xFF66BB6A),
         actions: <Widget>[
           new FlatButton(
-              child: new Text('Logout',
-                  style: new TextStyle(fontSize: 17.0, color: Colors.white)),
+              child: new Text('LOGOUT',
+                  style: new TextStyle(fontSize: 18.0, color: Colors.white)),
               onPressed: _signOut)
         ],
       ),
@@ -222,20 +217,21 @@ class _ProfilePageState extends State<ProfilePage> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: new BorderRadius.circular(30.0),
-        color: Colors.amberAccent,
+
       ),
-      padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+      padding: EdgeInsets.fromLTRB(10, 220.0, 10, 20),
       child: Column(
         children: <Widget>[
           new TextFormField(
             controller: _emailFilter,
             decoration: new InputDecoration(
-              contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+              contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
               hintText: "Enter New Email",
               border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(22.0)),
             ),
           ),
+          SizedBox(height: 5.0),
           new MaterialButton(
             shape: RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(30.0)),
@@ -244,8 +240,8 @@ class _ProfilePageState extends State<ProfilePage> {
               _changeEmail();
             },
             minWidth: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-            color: Colors.blueAccent,
+            padding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
+            color: Colors.green,
             textColor: Colors.white,
             child: Text(
               "Change Email",
@@ -286,10 +282,6 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
-  void _removeUser() {
-    widget.auth.deleteUser();
-  }
-
   void _sendResetPasswordMail() {
     if (_resetPasswordEmail != null && _resetPasswordEmail.isNotEmpty) {
       print("============>" + _resetPasswordEmail);
@@ -303,20 +295,21 @@ class _ProfilePageState extends State<ProfilePage> {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30.0),
-          color: Colors.brown
+
       ),
-      padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+      padding: EdgeInsets.fromLTRB(10, 0, 10, 20),
       child: Column(
         children: <Widget>[
           new TextFormField(
             controller: _passwordFilter,
             decoration: new InputDecoration(
-              contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+              contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
               hintText: "Enter New Password",
               border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(22.0)),
             ),
           ),
+          SizedBox(height: 5.0),
           new MaterialButton(
             shape: RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(30.0)),
@@ -324,8 +317,8 @@ class _ProfilePageState extends State<ProfilePage> {
               _changePassword();
             },
             minWidth: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-            color: Colors.blueAccent,
+            padding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
+            color: Colors.green,
             textColor: Colors.white,
             child: Text(
               "Change Password",
@@ -344,13 +337,14 @@ class _ProfilePageState extends State<ProfilePage> {
           child: new TextFormField(
             controller: _resetPasswordEmailFilter,
             decoration: new InputDecoration(
-              contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+              contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
               hintText: "Enter Email",
               border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(22.0)),
             ),
           ),
         ),
+        SizedBox(height: 5.0),
         new MaterialButton(
           shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(30.0)),
@@ -358,8 +352,8 @@ class _ProfilePageState extends State<ProfilePage> {
             _sendResetPasswordMail();
           },
           minWidth: MediaQuery.of(context).size.width,
-          padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          color: Colors.blueAccent,
+          padding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
+          color: Colors.green,
           textColor: Colors.white,
           child: Text(
             "Send Password Reset Mail",
@@ -370,21 +364,4 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  _removeUserContainer() {
-    return new MaterialButton(
-      shape:
-      RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-      onPressed: () {
-        _removeUser();
-      },
-      minWidth: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-      color: Colors.red,
-      textColor: Colors.white,
-      child: Text(
-        "Remove User",
-        textAlign: TextAlign.center,
-      ),
-    );
-  }
 }
