@@ -1,24 +1,12 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class DescPage extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
-    );
-  }
+  _DescPageState createState() => _DescPageState();
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class _DescPageState extends State<DescPage> {
   int photoIndex = 0;
   List<String> photos = [
     'img/cs1.jpg',
@@ -125,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text('Computer Science',
                   style: TextStyle(
                       fontFamily: 'Montserrat',
-                      fontSize: 25.0,
+                      fontSize: 20.0,
                       color: Colors.black,
                       fontWeight: FontWeight.bold
                   ),
@@ -140,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Text('Cambridge IGSE (Free Web Resources)',
                           style: TextStyle(
                             fontFamily: 'Montserrat',
-                            fontSize: 16.0,
+                            fontSize: 14.0,
                             color: Colors.grey,
                           ),
                         ),
@@ -155,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   'Price',
                   style: TextStyle(
                       fontFamily: 'Montserrat',
-                      fontSize: 22.0,
+                      fontSize: 20.0,
                       color: Colors.black,
                       fontWeight: FontWeight.bold
                   ),
@@ -171,7 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Text('RM 150.00',
                           style: TextStyle(
                             fontFamily: 'Montserrat',
-                            fontSize: 16.0,
+                            fontSize: 14.0,
                             color: Colors.grey,
                           ),
                         ),
@@ -186,7 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   'Author',
                   style: TextStyle(
                       fontFamily: 'Montserrat',
-                      fontSize: 22.0,
+                      fontSize: 20.0,
                       color: Colors.black,
                       fontWeight: FontWeight.bold
                   ),
@@ -202,7 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Text('David Watson & Helen Williams',
                             style: TextStyle(
                               fontFamily: 'Montserrat',
-                              fontSize: 16.0,
+                              fontSize: 14.0,
                               color: Colors.grey,
                       ),
                           ),
@@ -217,7 +205,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   'Publisher',
                   style: TextStyle(
                       fontFamily: 'Montserrat',
-                      fontSize: 22.0,
+                      fontSize: 20.0,
                       color: Colors.black,
                       fontWeight: FontWeight.bold
                   ),
@@ -233,7 +221,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Text('Hodder Education',
                             style: TextStyle(
                               fontFamily: 'Montserrat',
-                              fontSize: 16.0,
+                              fontSize: 14.0,
                               color: Colors.grey,
                             )
                             ),
@@ -248,7 +236,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   'Type',
                   style: TextStyle(
                       fontFamily: 'Montserrat',
-                      fontSize: 22.0,
+                      fontSize: 20.0,
                       color: Colors.black,
                       fontWeight: FontWeight.bold
                   ),
@@ -264,7 +252,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Text('Textbook',
                           style: TextStyle(
                             fontFamily: 'Montserrat',
-                            fontSize: 16.0,
+                            fontSize: 14.0,
                             color: Colors.grey,
                           ),
                         ),
@@ -279,7 +267,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   'Faculty',
                   style: TextStyle(
                       fontFamily: 'Montserrat',
-                      fontSize: 22.0,
+                      fontSize: 20.0,
                       color: Colors.black,
                       fontWeight: FontWeight.bold
                   ),
@@ -295,7 +283,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Text('Faculty of Engineering',
                           style: TextStyle(
                             fontFamily: 'Montserrat',
-                            fontSize: 16.0,
+                            fontSize: 14.0,
                             color: Colors.grey,
                           ),
                         ),
@@ -310,7 +298,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   'School',
                   style: TextStyle(
                       fontFamily: 'Montserrat',
-                      fontSize: 22.0,
+                      fontSize: 20.0,
                       color: Colors.black,
                       fontWeight: FontWeight.bold
                   ),
@@ -326,7 +314,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Text('School of Computing',
                           style: TextStyle(
                             fontFamily: 'Montserrat',
-                            fontSize: 16.0,
+                            fontSize: 14.0,
                             color: Colors.grey,
                           ),
                         ),
@@ -384,7 +372,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               'Chat with Seller',
                               style: TextStyle(
                                   fontFamily: 'Montserrat',
-                                  fontSize: 18.0,
+                                  fontSize: 17.0,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold
                               ),

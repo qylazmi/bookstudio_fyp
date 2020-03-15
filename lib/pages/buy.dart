@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'description.dart';
+
 class BuyPage extends StatefulWidget {
   @override
   _BuyPageState createState() => _BuyPageState();
@@ -159,7 +161,11 @@ class _BuyPageState extends State<BuyPage>
                 ],
               ),
               SizedBox(height: 10.0),
-              itemCard('Programming', 'img/cs1.jpg'),
+              InkWell(child: itemCard('Programming', 'img/cs1.jpg'), onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> DescPage()));
+              },),
+
+
               itemCard('Waste Water', 'img/Water.jpg'),
               itemCard('Finance', 'img/Finance.jpg'),
             ],
@@ -242,6 +248,7 @@ class _BuyPageState extends State<BuyPage>
                               color: Colors.white,
                               fontFamily: 'Quicksand',
                               fontWeight: FontWeight.bold),
+
                         ),
                       ),
                     )

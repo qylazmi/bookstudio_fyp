@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './home_page.dart';
 import './buy.dart';
 import './cart.dart';
+import './form_screen.dart';
 import '../services/authentication.dart';
 
 class MenuPage extends StatefulWidget {
@@ -14,13 +15,34 @@ class MenuPage extends StatefulWidget {
 
   @override
   _MenuPageState createState() => _MenuPageState();
+}
 
+enum AuthStatus {
+  NOT_DETERMINED,
+  NOT_LOGGED_IN,
+  LOGGED_IN,
 }
 
 class _MenuPageState extends State<MenuPage> {
+
   var selectedItem = 'SELL';
+  AuthStatus authStatus = AuthStatus.NOT_DETERMINED;
+  String _userId = "";
 
   @override
+  void initState() {
+    void _onSignedOut() {
+      setState(() {
+        authStatus = AuthStatus.NOT_LOGGED_IN;
+        _userId = "";
+      });
+    }
+
+  }
+
+
+  @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
@@ -133,7 +155,7 @@ class _MenuPageState extends State<MenuPage> {
           //Get out of the stack for the options
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             InkWell(child: _buildMenuItem('SELL', Icons.store), onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> FormScreen()));
             },),
             InkWell(child: _buildMenuItem('PROFILE', Icons.account_circle), onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
@@ -174,6 +196,7 @@ class _MenuPageState extends State<MenuPage> {
                   color: selectedItem == itemName ? Colors.white : Colors.white,
                   fontSize: 12.0))
         ]));
+
   }
 
   selectMenuOption(String itemName) {
@@ -182,8 +205,4 @@ class _MenuPageState extends State<MenuPage> {
     });
   }
 
-  selectMenu(String itemName) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => HomePage()));
-  }
 }

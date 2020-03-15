@@ -2,8 +2,6 @@ import 'package:bookstudiofyp/pages/menu_user.dart';
 import 'package:flutter/material.dart';
 import './login_signup_page.dart';
 import '../services/authentication.dart';
-import './home_page.dart';
-
 
 class RootPage extends StatefulWidget {
   RootPage({this.auth});
@@ -16,8 +14,8 @@ class RootPage extends StatefulWidget {
 
 enum AuthStatus {
   NOT_DETERMINED,
-  NOT_LOGGED_IN,
-  LOGGED_IN,
+NOT_LOGGED_IN,
+LOGGED_IN,
 }
 
 class _RootPageState extends State<RootPage> {
